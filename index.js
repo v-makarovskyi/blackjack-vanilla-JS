@@ -66,8 +66,19 @@ const createPlayersUI = () => {
         document.getElementById('players').appendChild(div_player)
         
     }
-  
-    
+}
+
+//поочередная раздача карт каждому игроку
+//по 2 карты каждому
+const dealHands = () => {
+    for(let i = 0; i < 2; i++) {
+        for(let j = 0; j < players.length; j++) {
+            const card = deck.pop()
+            players[j].Hand.push(card)
+            renderedCard(card, j)
+            updatePoints()
+        }
+    }
 }
 
 

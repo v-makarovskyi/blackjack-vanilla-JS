@@ -5,7 +5,6 @@ const deck = new Array()
 const players = new Array()
 
 const createDeck = () => {
-    const deck = new Array()
     for(let c = 0; c < cards.length; c++) {
         for(let s = 0; s < suits.length; s++) {
             let weight = parseInt(cards[c])
@@ -35,10 +34,40 @@ const shuffle =() => {
 
 
 const createPlayers = (num) => {
-    players = new Array()
     for(let i = 1; i < num; i++) {
         const hand = new Array()
         const player = {Name:'Vladimir', ID: i, Points: 0, Hand: hand}
         players.push(player)
     }
 }
+
+
+//создание пользовательского интерфейса 
+const createPlayersUI = () => {
+    document.getElementById('players').innerHTML = ''
+
+    for(let i = 0; i < players.length; i++) {
+        const div_player = document.createElement('div')
+        const div_playerid = document.createElement('div')
+        const div_hand = document.createElement('div')
+        const div_points = document.createElement('div')
+
+        div_points.className = 'points'
+        div_points.id = 'points_' + i
+        div_player.id = 'player_' + i
+        div_player.className = 'player'
+        div_hand.id = 'hand_' + i
+
+        div_playerid.innerHTML = 'Player ' + players[i].ID
+        div_player.appendChild(div_playerid)
+        div_player.appendChild(div_hand)
+        div_player.appendChild(div_points)
+
+        document.getElementById('players').appendChild(div_player)
+        
+    }
+  
+    
+}
+
+

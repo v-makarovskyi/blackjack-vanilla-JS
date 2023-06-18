@@ -36,9 +36,10 @@ const shuffle =() => {
 const createPlayers = (num) => {
     for(let i = 1; i < num; i++) {
         const hand = new Array()
-        const player = {Name:'Vladimir', ID: i, Points: 0, Hand: hand}
+        const player = {Name:'Player', ID: i, Points: 0, Hand: hand}
         players.push(player)
     }
+    
 }
 createPlayers(2)
 
@@ -87,6 +88,23 @@ const dealHands = () => {
 const renderedCard = (card, player) => {
     const hand = document.getElementById('hand_'+player)
     hand.appendChild(getCardUI(card))
+}
+
+const getCardUI = (card) => {
+    const el = document.createElement('div')
+    let icon = ''
+    if(card.Suit === 'chervy') {
+        icon = '&hearts;'
+    } else if (card.Suit === 'picki') {
+        icon = '&spades;'
+    } else if(card.Suit === 'bubny') {
+        icon = '&diams;'
+    } else {
+        icon = '&clubs;'
+    }
+    el.className = 'card'
+    el.innerHTML = card.Value+ <br/> + icon
+    return el
 }
 
 const updatePoints = () => {

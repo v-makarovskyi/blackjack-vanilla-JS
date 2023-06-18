@@ -40,6 +40,7 @@ const createPlayers = (num) => {
         players.push(player)
     }
 }
+createPlayers(2)
 
 
 //создание пользовательского интерфейса 
@@ -67,6 +68,7 @@ const createPlayersUI = () => {
         
     }
 }
+createPlayersUI()
 
 //поочередная раздача карт каждому игроку
 //по 2 карты каждому
@@ -85,6 +87,13 @@ const dealHands = () => {
 const renderedCard = (card, player) => {
     const hand = document.getElementById('hand_'+player)
     hand.appendChild(getCardUI(card))
+}
+
+const updatePoints = () => {
+    for(let i = 0; i < players.length; i++) {
+        getPoints(i)
+        document.getElementById('points_' + i).innerHTML = players[i].Points
+    }
 }
 
 //Обновление колоды после сдачи карт

@@ -1,0 +1,36 @@
+.game {
+    width: 720px;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+    background:  #961696;
+    text-align: center;
+    min-height: 440px;
+}
+
+.btn {
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: violet;
+}
+
+.game h1 {
+    padding: 10px;
+    background: #390202;
+    color: white;
+    margin: 0;
+}
+
+.game .game-body {
+    padding: 20px;
+}
+
+.game game-options {
+    text-align: center;
+}
+

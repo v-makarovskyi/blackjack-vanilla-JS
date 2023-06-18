@@ -2,6 +2,7 @@ const suits = ['bubny', 'chervy', 'picki', 'trefy']
 const cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Валет', 'Дама', 'Король', 'Туз']
 
 const deck = new Array()
+const players = new Array()
 
 const createDeck = () => {
     const deck = new Array()
@@ -29,5 +30,15 @@ const shuffle =() => {
 
         deck[location1] = deck[location2]
         deck[location2] = tmp
+    }
+}
+
+
+const createPlayers = (num) => {
+    players = new Array()
+    for(let i = 1; i < num; i++) {
+        const hand = new Array()
+        const player = {Name:'Vladimir', ID: i, Points: 0, Hand: hand}
+        players.push(player)
     }
 }

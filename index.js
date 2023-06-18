@@ -82,6 +82,11 @@ const dealHands = () => {
     updateDeck()
 }
 
+const renderedCard = (card, player) => {
+    const hand = document.getElementById('hand_'+player)
+    hand.appendChild(getCardUI(card))
+}
+
 //Обновление колоды после сдачи карт
 const updateDeck = () => {
     document.getElementById('deckcount').innerHTML = deck.length

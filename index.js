@@ -79,6 +79,12 @@ const dealHands = () => {
             updatePoints()
         }
     }
+    updateDeck()
+}
+
+//Обновление колоды после сдачи карт
+const updateDeck = () => {
+    document.getElementById('deckcount').innerHTML = deck.length
 }
 
 

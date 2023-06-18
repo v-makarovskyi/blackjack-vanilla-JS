@@ -107,11 +107,19 @@ const getCardUI = (card) => {
     return el
 }
 
+const getPoints = (player) => {
+    let points = 0
+    for(let i = 0; i < players[player].Hand.length; i++) {
+        points += players[player].Hand[i].weight
+    } 
+    players[player].Points = points
+    return points
+}
+
 const updatePoints = () => {
-    for(let i = 0; i < players.length; i++) {
-        getPoints(i)
-        document.getElementById('points_' + i).innerHTML = players[i].Points
-    }
+    for(let i = 0; i < players.length; i++)
+    getPoints(i)
+    document.getElementById('points_' + i).innerHTML = players[i].Points
 }
 
 //Обновление колоды после сдачи карт

@@ -8,7 +8,22 @@
     <title>blackjack</title>
 </head>
 <body>
-    1
-    <script type="text/javascript" src="index.js"></script>
+    <div class="game">
+        <h1>BlackJack</h1>
+        <div class="game-body">
+            <div class="game-options">
+                <input type="button" id="btnStart" class="btn" value="Старт" onclick="">
+                <input type="button" class="btn" value="Сдать мне" onclick="">
+                <input type="button" class="btn" value="Себе" onclick="">
+            </div>
+            <div class="status" id="status"></div>
+            <div id="deck" class="deck">
+                <div id="deckcount">52</div>
+            </div>
+            <div id="players" class="players"></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <script async defer src="index.js"></script>
 </body>
 </html>

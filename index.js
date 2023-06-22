@@ -1,5 +1,5 @@
 const suits = ["bubny", "chervy", "picki", "trefy"];
-const cards = [
+const values = [
   "2",
   "3",
   "4",
@@ -9,31 +9,35 @@ const cards = [
   "8",
   "9",
   "10",
-  "Валет",
-  "Дама",
-  "Король",
-  "Туз",
+  "J",
+  "Q",
+  "K",
+  "A",
 ];
 
-const deck = new Array();
-const players = new Array();
+let deck = new Array();
+
+let players = new Array();
+let currentPlayer = 0;
 
 //Создаем колоду карт для игры
 function createDeck() {
-  for (let c = 0; c < cards.length; c++) {
+  deck = new Array();
+  for (let c = 0; c < values.length; c++) {
     for (let s = 0; s < suits.length; s++) {
-      let weight = parseInt(cards[c]);
-      if (cards[c] === "Валет" || cards[c] === "Дама" || cards[c] === "Король")
-        weight = 10;
-      if (cards[c] === "Туз") weight = 11;
-      const card = { Value: cards[c], Suit: suits[s], Weight: weight };
+      var weight = parseInt(values[c]);
+      if (values[c] == "J" || values[c] == "Q" || values[c] == "K") weight = 10;
+      if (values[c] == "A") weight = 11;
+      var card = { Value: values[c], Suit: suits[s], Weight: weight };
       deck.push(card);
     }
   }
+  console.log(deck)
 }
 
 //Функция создания игроков
 function createPlayers(num) {
+  players = new Array();
   for (let p = 1; p <= num; p++) {
     const hand = new Array();
     const player = { ID: p, Name: "Player " + p, Points: 0, Hand: hand };
@@ -52,9 +56,11 @@ function createPlayersUI() {
 
     div_points.className = "points";
     div_points.id = "points_" + p;
-    div_playerid.id = "player_" + p;
+    div_player.id = "player_" + p;
     div_player.className = "player";
     div_hand.id = "hand_" + p;
+
+    div_playerid.innerHTML = 'Player ' + players[p].ID
 
     div_player.appendChild(div_playerid);
     div_player.appendChild(div_hand);
@@ -66,10 +72,10 @@ function createPlayersUI() {
 
 //перетасовка колоды
 function shuffle() {
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 1; i++) {
     let location1 = Math.floor(Math.random() * deck.length);
     let location2 = Math.floor(Math.random() * deck.length);
-    let tmp = location1;
+    let tmp = deck[location1]
 
     deck[location1] = deck[location2];
     deck[location2] = tmp;
@@ -78,30 +84,30 @@ function shuffle() {
 
 //Старт игры
 function startBlackjack() {
-    document.getElementById('btnStart').value = 'Рестарт'
-    document.getElementById('status').style.display = 'none'
-    //Сдаем по 2 карты каждому объекту Player
-    currentPlayer = 0
-    createDeck()
-    shuffle()
-    createPlayers(2)
-    createPlayersUI()
-    dealHands()
-    document.getElementById('player_' + currentPlayer).classList.add('active')
+  document.getElementById("btnStart").value = "Рестарт";
+  document.getElementById("status").style.display = "none";
+  //Сдаем по 2 карты каждому объекту Player
+  currentPlayer = 0;
+  createDeck();
+  shuffle();
+  createPlayers(2);
+  createPlayersUI();
+  dealHands();
+  document.getElementById("player_" + currentPlayer).classList.add("active");
 }
 
 function dealHands() {
-    //поочередная раздача карт каждому игроку
-    //по 2-е карты каждому
+  //поочередная раздача карт каждому игроку
+  //по 2-е карты каждому
     for(let i = 0; i < 2; i++) {
         for(let x = 0; x < players.length; x++) {
-            const card = deck.pop()
+            let card = deck.pop()
             players[x].Hand.push(card)
             renderCard(card, x)
             updatePoints()
         }
     }
-    updateDeck()
+  updateDeck();
 }
 
 //Добавить карту в <div id=`hand_${number}`></div> внутри <div class='player'></div>
@@ -110,8 +116,38 @@ function renderCard(card, player) {
     hand.appendChild(getCardUI(card))
 }
 
-//Обновление количества карт в коложе после сдачи
-function updateDeck() {
-    document.getElementById('deckcount').innerHTML = deck.length
+function getCardUI(card) {
+  const el = document.createElement("div");
+  let icon = "";
+  if (card.Suit == "chervy") icon = "♥";
+  else if (card.Suit == "picki") icon = "♠";
+  else if (card.Suit == "bubny") icon = "♦";
+  else icon = "♣";
+
+  el.className = "card";
+  el.innerHTML = card.Value + "<br/>" + icon;
+  return el;
 }
 
+//Функция подсчета общего количества очков игрока
+function getPoints(player) {
+    let points = 0
+    for(let i = 0; i < players[player].Hand.length; i++) {
+        points += players[player].Hand[i].Weight
+    }
+    players[player].Points = points
+    return points
+}
+
+
+
+//Обновление количества карт в коложе после сдачи
+function updateDeck() {
+  document.getElementById("deckcount").innerHTML = deck.length;
+}
+
+window.addEventListener("load", function () {
+  createDeck();
+  shuffle();
+  createPlayers(2);
+});

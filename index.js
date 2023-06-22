@@ -15,14 +15,38 @@ function createDeck() {
             deck.push(card)
         }
     }
-    return deck
 }
 
 //Функция создания игроков
 function createPlayers(num) {
-    for(let p = 1; p < num; p++) {
+    for(let p = 1; p <= num; p++) {
         const hand = new Array()
-        const player = {ID: p, Name: 'Player ' + p, Points: 0, Hand: hand}
+        const player = {ID:p, Name: 'Player ' + p, Points: 0, Hand: hand}
         players.push(player)
     }
 }
+
+//Функция для отображения пользовательского интерфейса
+function createPlayersUI() {
+    document.getElementById('players').innerHTML = ''
+    for(let p = 0; p < players.length; p++) {
+        const div_player = document.createElement('div')
+        const div_playerid = document.createElement('div')
+        const div_hand = document.createElement('div')
+        const div_points = document.createElement('div')
+
+        div_points.className = 'points'
+        div_points.id = 'points_' + p
+        div_playerid.id = 'player_' + p
+        div_player.className = 'player'
+        div_hand.id = 'hand_' + p
+
+        div_player.appendChild(div_playerid)
+        div_player.appendChild(div_hand)
+        div_player.appendChild(div_points)
+
+        document.getElementById('players').appendChild(div_player)
+    }
+}
+
+

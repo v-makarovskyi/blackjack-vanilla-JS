@@ -78,7 +78,7 @@ function shuffle() {
 
 //Старт игры
 function startBlackjack() {
-    document.getElementById('startBtn').value = 'Рестарт'
+    document.getElementById('btnStart').value = 'Рестарт'
     document.getElementById('status').style.display = 'none'
     //Сдаем по 2 карты каждому объекту Player
     currentPlayer = 0
@@ -97,7 +97,17 @@ function dealHands() {
         for(let x = 0; x < players.length; x++) {
             const card = deck.pop()
             players[x].Hand.push(card)
+            renderCard(x, card)
+            updatePoints()
         }
     }
+    updateDeck()
+}
+
+
+
+//Обновление количества карт в коложе после сдачи
+function updateDeck() {
+    document.getElementById('deckcount').innerHTML = deck.length
 }
 

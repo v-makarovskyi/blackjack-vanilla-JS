@@ -147,6 +147,17 @@ function updatePoints() {
     }
 }
 
+//Сдаем карту игроку
+//проверяем, чтобы Points было не больше 21
+function hitMe() {
+    let card = deck.pop()
+    players[currentPlayer].Hand.push(card)
+    renderCard(card, currentPlayer)
+    updatePoints()
+    updateDeck()
+    check()
+}
+
 //Обновление количества карт в коложе после сдачи
 function updateDeck() {
   document.getElementById("deckcount").innerHTML = deck.length;

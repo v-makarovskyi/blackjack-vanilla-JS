@@ -32,7 +32,7 @@ function createDeck() {
       deck.push(card);
     }
   }
-  console.log(deck)
+  console.log(deck);
 }
 
 //Функция создания игроков
@@ -60,7 +60,7 @@ function createPlayersUI() {
     div_player.className = "player";
     div_hand.id = "hand_" + p;
 
-    div_playerid.innerHTML = 'Player ' + players[p].ID
+    div_playerid.innerHTML = "Player " + players[p].ID;
 
     div_player.appendChild(div_playerid);
     div_player.appendChild(div_hand);
@@ -75,7 +75,7 @@ function shuffle() {
   for (let i = 0; i < 1000; i++) {
     let location1 = Math.floor(Math.random() * deck.length);
     let location2 = Math.floor(Math.random() * deck.length);
-    let tmp = deck[location1]
+    let tmp = deck[location1];
 
     deck[location1] = deck[location2];
     deck[location2] = tmp;
@@ -99,21 +99,21 @@ function startBlackjack() {
 function dealHands() {
   //поочередная раздача карт каждому игроку
   //по 2-е карты каждому
-    for(let i = 0; i < 2; i++) {
-        for(let x = 0; x < players.length; x++) {
-            let card = deck.pop()
-            players[x].Hand.push(card)
-            renderCard(card, x)
-            updatePoints()
-        }
+  for (let i = 0; i < 2; i++) {
+    for (let x = 0; x < players.length; x++) {
+      let card = deck.pop();
+      players[x].Hand.push(card);
+      renderCard(card, x);
+      updatePoints();
     }
+  }
   updateDeck();
 }
 
 //Добавить карту в <div id=`hand_${number}`></div> внутри <div class='player'></div>
 function renderCard(card, player) {
-    const hand = document.getElementById('hand_' + player)
-    hand.appendChild(getCardUI(card))
+  const hand = document.getElementById("hand_" + player);
+  hand.appendChild(getCardUI(card));
 }
 
 function getCardUI(card) {
@@ -131,31 +131,40 @@ function getCardUI(card) {
 
 //Функция подсчета общего количества очков игрока
 function getPoints(player) {
-    let points = 0
-    for(let i = 0; i < players[player].Hand.length; i++) {
-        points += players[player].Hand[i].Weight
-    }
-    players[player].Points = points
-    return points
+  let points = 0;
+  for (let i = 0; i < players[player].Hand.length; i++) {
+    points += players[player].Hand[i].Weight;
+  }
+  players[player].Points = points;
+  return points;
 }
 
 //Функция обновления общего количества очков игрока
 function updatePoints() {
-    for(let i = 0; i < players.length; i++) {
-        getPoints(i)
-        document.getElementById('points_' + i).innerHTML = players[i].Points
-    }
+  for (let i = 0; i < players.length; i++) {
+    getPoints(i);
+    document.getElementById("points_" + i).innerHTML = players[i].Points;
+  }
 }
 
 //Сдаем карту игроку
 //проверяем, чтобы Points было не больше 21
 function hitMe() {
-    let card = deck.pop()
-    players[currentPlayer].Hand.push(card)
-    renderCard(card, currentPlayer)
-    updatePoints()
-    updateDeck()
-    check()
+  let card = deck.pop();
+  players[currentPlayer].Hand.push(card);
+  renderCard(card, currentPlayer);
+  updatePoints();
+  updateDeck();
+  check();
+}
+
+function check() {
+  if (players[currentPlayer].Points > 21) {
+    document.getElementById("status").innerHTML =
+      "Победитель: Игрок " + players[winner].ID;
+    document.getElementById("status").style.display = "inline-block";
+    end();
+  }
 }
 
 //Обновление количества карт в коложе после сдачи

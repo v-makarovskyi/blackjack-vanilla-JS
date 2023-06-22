@@ -97,14 +97,18 @@ function dealHands() {
         for(let x = 0; x < players.length; x++) {
             const card = deck.pop()
             players[x].Hand.push(card)
-            renderCard(x, card)
+            renderCard(card, x)
             updatePoints()
         }
     }
     updateDeck()
 }
 
-
+//Добавить карту в <div id=`hand_${number}`></div> внутри <div class='player'></div>
+function renderCard(card, player) {
+    const hand = document.getElementById('hand_' + player)
+    hand.appendChild(getCardUI(card))
+}
 
 //Обновление количества карт в коложе после сдачи
 function updateDeck() {

@@ -89,3 +89,15 @@ function startBlackjack() {
     dealHands()
     document.getElementById('player_' + currentPlayer).classList.add('active')
 }
+
+function dealHands() {
+    //поочередная раздача карт каждому игроку
+    //по 2-е карты каждому
+    for(let i = 0; i < 2; i++) {
+        for(let x = 0; x < players.length; x++) {
+            const card = deck.pop()
+            players[x].Hand.push(card)
+        }
+    }
+}
+

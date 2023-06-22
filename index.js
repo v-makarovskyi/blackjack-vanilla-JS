@@ -72,7 +72,7 @@ function createPlayersUI() {
 
 //перетасовка колоды
 function shuffle() {
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 1000; i++) {
     let location1 = Math.floor(Math.random() * deck.length);
     let location2 = Math.floor(Math.random() * deck.length);
     let tmp = deck[location1]
@@ -139,7 +139,13 @@ function getPoints(player) {
     return points
 }
 
-
+//Функция обновления общего количества очков игрока
+function updatePoints() {
+    for(let i = 0; i < players.length; i++) {
+        getPoints(i)
+        document.getElementById('points_' + i).innerHTML = players[i].Points
+    }
+}
 
 //Обновление количества карт в коложе после сдачи
 function updateDeck() {

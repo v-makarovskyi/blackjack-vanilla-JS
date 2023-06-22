@@ -18,3 +18,11 @@ function createDeck() {
     return deck
 }
 
+//Функция создания игроков
+function createPlayers(num) {
+    for(let p = 1; p < num; p++) {
+        const hand = new Array()
+        const player = {ID: p, Name: 'Player ' + p, Points: 0, Hand: hand}
+        players.push(player)
+    }
+}

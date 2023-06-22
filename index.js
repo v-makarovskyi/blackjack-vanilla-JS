@@ -65,7 +65,7 @@ function createPlayersUI() {
 }
 
 //перетасовка колоды
-function shaffle() {
+function shuffle() {
   for (let i = 0; i < 1000; i++) {
     let location1 = Math.floor(Math.random() * deck.length);
     let location2 = Math.floor(Math.random() * deck.length);
@@ -74,4 +74,18 @@ function shaffle() {
     deck[location1] = deck[location2];
     deck[location2] = tmp;
   }
+}
+
+//Старт игры
+function startBlackjack() {
+    document.getElementById('startBtn').value = 'Рестарт'
+    document.getElementById('status').style.display = 'none'
+    //Сдаем по 2 карты каждому объекту Player
+    currentPlayer = 0
+    createDeck()
+    shuffle()
+    createPlayers(2)
+    createPlayersUI()
+    dealHands()
+    document.getElementById('player_' + currentPlayer).classList.add('active')
 }

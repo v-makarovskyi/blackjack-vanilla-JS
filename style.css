@@ -1,36 +1,82 @@
 .game {
     width: 720px;
-    border: 1px solid #ddd;
+    min-height: 500px;
     margin: 0 auto;
-    background:  #961696;
+    background: violet;
+    border: 15px solid rgb(135, 37, 135);
     text-align: center;
-    min-height: 440px;
 }
 
 .btn {
+    margin-right: 7px;
+    padding: 10px 20px;
+    background: grey;
+    color: white;
     border: none;
-    padding: 10px 30px;
-    border-radius: 10px;
-    margin: 0px 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
     cursor: pointer;
 }
 
 .btn:hover {
-    background: violet;
+    background: black;
 }
 
 .game h1 {
     padding: 10px;
-    background: #390202;
-    color: white;
+    background: grey;
     margin: 0;
+    color: white;
 }
 
 .game .game-body {
     padding: 20px;
 }
 
-.game game-options {
+.game .game-options {
     text-align: center;
+}
+
+.game .card {
+    width: 50px;
+    height: 90px;
+    padding: 10px;
+    background-color: white;
+    border: 5px solid grey;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 3px;
+}
+
+.players {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+    
+}
+
+.players .player {
+    width: 40%;
+    border: 5px solid #f5f5f5;
+    border-radius: 10px;
+    padding: 10px;
+    display: inline-block;
+    margin: 1%;
+}
+
+.players .player.active {
+    border: 5px solid #08165c;
+}
+
+.deck {
+    float: left;
+    background: white;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    border: 5px ridge rgb(135, 37, 135);
 }
 

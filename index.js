@@ -20,6 +20,7 @@ let deck = new Array();
 let players = new Array();
 let currentPlayer = 0;
 
+
 //Создаем колоду карт для игры
 function createDeck() {
   deck = new Array();
@@ -32,7 +33,6 @@ function createDeck() {
       deck.push(card);
     }
   }
-  console.log(deck);
 }
 
 //Функция создания игроков
@@ -161,13 +161,41 @@ function hitMe() {
 function check() {
   if (players[currentPlayer].Points > 21) {
     document.getElementById("status").innerHTML =
-      "Победитель: Игрок " + players[winner].ID;
+      "Игрок " + players[currentPlayer].ID + " проиграл";
     document.getElementById("status").style.display = "inline-block";
     end();
   }
 }
 
-//Обновление количества карт в коложе после сдачи
+function stay() {
+  // move on to next player, if any
+  if (currentPlayer != players.length - 1) {
+    document
+      .getElementById("player_" + currentPlayer)
+      .classList.remove("active");
+    currentPlayer += 1;
+    document.getElementById("player_" + currentPlayer).classList.add("active");
+  } else {
+    end();
+  }
+}
+
+function end() {
+  let winner = -1;
+  let score = 0;
+
+  for (let i = 0; i < players.length; i++) {
+    if (players[i].Points > score && players[i].Points < 22) {
+      winner = i;
+    }
+    score = players[i].Points;
+  }
+  document.getElementById("status").innerHTML =
+    "Победил игрок: " + players[winner].ID;
+  document.getElementById("status").style.display = "inline-block";
+}
+
+//Обновление количества карт в колоде после сдачи
 function updateDeck() {
   document.getElementById("deckcount").innerHTML = deck.length;
 }

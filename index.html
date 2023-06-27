@@ -9,12 +9,12 @@
 </head>
 <body>
     <div class="game">
-        <h1>BlackJack</h1>
+        <h3>BlackJack</h3>
         <div class="game-body">
             <div class="game-options">
-                <input type="button" id="btnStart" class="btn" value="Старт" onclick="">
-                <input type="button" class="btn" value="Сдать мне" onclick="">
-                <input type="button" class="btn" value="Себе" onclick="">
+                <input type="button" id="btnStart" class="btn" value="Старт" onclick="startBlackjack()">
+                <input type="button" class="btn" value="Сдать мне" onclick="hitMe()">
+                <input type="button" class="btn" value="Себе" onclick="stay()">
             </div>
             <div class="status" id="status"></div>
             <div id="deck" class="deck">

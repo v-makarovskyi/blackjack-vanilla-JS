@@ -1,6 +1,6 @@
 .game {
     width: 720px;
-    min-height: 500px;
+    min-height: 430px;
     margin: 0 auto;
     background: violet;
     border: 15px solid rgb(135, 37, 135);
@@ -22,7 +22,7 @@
     background: black;
 }
 
-.game h1 {
+.game h3 {
     padding: 10px;
     background: grey;
     margin: 0;
@@ -50,6 +50,17 @@
     margin: 3px;
 }
 
+.game .status {
+    display: inline-block;
+    background: thistle;
+    border: 5px solid white;
+    border-radius: 10px;
+    padding: 5px 20px;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: none;
+}
+
 .players {
     width: 500px;
     margin: 0 auto;
@@ -65,10 +76,18 @@
     padding: 10px;
     display: inline-block;
     margin: 1%;
+    vertical-align: middle;
 }
 
 .players .player.active {
     border: 5px solid #08165c;
+}
+
+.points {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px;
 }
 
 .deck {
